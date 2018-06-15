@@ -5,11 +5,11 @@ classdef Bar < progress.Base
         TotalSteps
         EmptyString
         FullString
-        BarSlots = 20;
+        BarSlots = 20
         ShowBar = true
         ShowPercentage = true
         ShowEstimatedRemaining = true
-        ShowETA = true
+        ShowETA = false
         Style_
     end
 

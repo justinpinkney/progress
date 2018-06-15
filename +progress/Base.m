@@ -10,9 +10,9 @@ classdef Base < matlab.mixin.SetGet
         Iteration = 0
         PreviousIteration = 0
         Finished = false
-        ShowIterations = true
+        ShowIterations = false
         ShowTimeElapsed = true
-        ShowSpeed = true
+        ShowSpeed = false
         ShowFinalMessage = true
         Verbose = false
     end
