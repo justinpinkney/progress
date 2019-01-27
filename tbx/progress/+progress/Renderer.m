@@ -26,16 +26,16 @@ classdef Renderer
         function elapsedTimeString = makeElapsedTimeString(obj, elapsedTime)
           label = 'Elapsed time';
           elapsedTimeString = char(duration(0, 0, elapsedTime));
-          if this.Verbose
+          if obj.Verbose
               elapsedTimeString = obj.addLabel(elapsedTimeString, label);
           end
         end
 
-        function speedString = makeSpeedString(this, speed)
+        function speedString = makeSpeedString(obj, speed)
             label = 'Current iterations/s';
             speedString = sprintf('%.1f', speed);
-            if this.Verbose
-                speedString = this.addLabel(speedString, label);
+            if obj.Verbose
+                speedString = obj.addLabel(speedString, label);
             end
         end
         

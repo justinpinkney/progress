@@ -5,25 +5,42 @@ classdef SimpleSpinnerRenderer < progress.Renderer
         Verbose = false
         SimpleSpinSequence = {'-', '/', '|', '\\'}
         SimpleDoneString = '.'
+        ShowThrobber = true;
+        ShowTimeElapsed = true;
+        ShowIterations = true;
+        ShowSpeed = true;
     end
     
     methods
         function outputString = render(obj, tracker)
             outputString = tracker.Message;
-            if this.ShowThrobber
-                spinString = obj.makeSpinString(tracker.Iterations);
+            
+            if tracker.Finished
+                outputString = sprintf('%s%s\n', outputString, obj.SimpleDoneString);
+            else
+                outputString = addStats(outputString, tracker);
+            end
+        end
+        
+        function outputString = addStats(obj, inString, tracker)
+            outputString = inString;
+            if obj.ShowThrobber
+                spinString = obj.makeSpinString(tracker.Iteration);
                 outputString = obj.addSection(outputString, spinString);
             end
-            if this.ShowTimeElapsed
+            if obj.ShowTimeElapsed
                 elapsedTimeString = obj.makeElapsedTimeString(tracker.TotalTime);
                 outputString = obj.addSection(outputString, elapsedTimeString);
             end
-            if this.ShowIterations
-                iterationString = obj.makeIterationString(tracker.Iterations);
+            if obj.ShowIterations
+                iterationString = obj.makeIterationString(tracker.Iteration);
                 outputString = obj.addSection(outputString, iterationString);
             end
-            if this.ShowSpeed
-                outputString = obj.addSection(outputString, this.SpeedString);
+            if obj.ShowSpeed
+                speed = (tracker.Iteration - tracker.PreviousIteration)/...
+                          (tracker.TotalTime - tracker.PreviousTime);
+                speedString = obj.makeSpeedString(speed);
+                outputString = obj.addSection(outputString, speedString);
             end
         end
         
