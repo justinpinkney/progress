@@ -1,4 +1,4 @@
 language: java
 install: source /dev/stdin <<< "$(curl -sL https://ssd.mathworks.com/supportfiles/matlab-runner/install)"
 script: matlab-runner "runTestsWithCoverage"
-after_script: bash <(curl -s https://codecov.io/bash)
+after_script: bash <(curl -s https://codecov.io/bash) -f CoverageResults.xml

@@ -2,6 +2,7 @@ import matlab.unittest.TestSuite
 import matlab.unittest.TestRunner
 import matlab.unittest.plugins.CodeCoveragePlugin
 
+install();
 suite = TestSuite.fromPackage('tests');
 runner = TestRunner.withTextOutput;
 
